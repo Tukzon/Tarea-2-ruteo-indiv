@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  postgis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: postgis_container
+    environment:
+      POSTGRES_DB: ruteo
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: ruteo
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+      - ./install_pgrouting.sh:/docker-entrypoint-initdb.d/install_pgrouting.sh
+      - ./yafun:/yafun
+      - ./import_shapefiles.sh:/docker-entrypoint-initdb.d/import_shapefiles.sh
+
+volumes:
+  postgis_data:
