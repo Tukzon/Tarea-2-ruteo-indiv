@@ -1,0 +1,4 @@
+CREATE EXTENSION pgrouting;
+ALTER TABLE public.fibra_optica ADD probabilidad_fallo float4 NOT NULL DEFAULT 0;
+ALTER TABLE fibra_optica ADD COLUMN source INTEGER;
+ALTER TABLE fibra_optica ADD COLUMN target INTEGER;
