@@ -8,8 +8,10 @@ RUN apt-get update \
        postgresql-13-pgrouting \
        ca-certificates \
        gnupg \
+       gdal-bin \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 COPY postgresql.conf /etc/postgresql/13/main/postgresql.conf
 COPY pg_hba.conf /etc/postgresql/13/main/pg_hba.conf
+COPY 88.geojson /88.geojson

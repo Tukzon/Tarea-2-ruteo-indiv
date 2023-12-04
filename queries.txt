@@ -1,4 +1,8 @@
+psql -U postgres -d ruteo -h localhost -f optica.sql
+
 CREATE EXTENSION pgrouting;
 ALTER TABLE public.fibra_optica ADD probabilidad_fallo float4 NOT NULL DEFAULT 0;
 ALTER TABLE fibra_optica ADD COLUMN source INTEGER;
 ALTER TABLE fibra_optica ADD COLUMN target INTEGER;
+
+SELECT pgr_createTopology('fibra_optica', 0.00001, 'geom', 'gid');
