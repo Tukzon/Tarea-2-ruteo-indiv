@@ -19,12 +19,11 @@ lambda_param = 500
 
 cur.execute("""
     UPDATE fibra_optica
-    SET probabilidad_fallo = 1 - EXP(-ST_Distance(geom::geography, ST_MakePoint(%s, %s)::geography) / 1000 / %s)
+    SET probabilidad_fallo = EXP(-ST_Distance(geom::geography, ST_MakePoint(%s, %s)::geography) / 1000 / %s)
     WHERE ST_Distance(geom::geography, ST_MakePoint(%s, %s)::geography) IS NOT NULL
 """, (epicentro_lon, epicentro_lat, lambda_param, epicentro_lon, epicentro_lat))
 
 conn.commit()
-
 cur.close()
 conn.close()
 
